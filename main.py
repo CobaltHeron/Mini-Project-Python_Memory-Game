@@ -105,16 +105,32 @@ else:
 
 
 # Mostrar tablero
+# ==========================================================
+# cols = st.columns(BOARD_SIZE)
+# for i in range(TOTAL_CARDS):
+#     col = cols[i % BOARD_SIZE]
+#     with col:
+#         if st.session_state.revealed[i] or st.session_state.matched[i]:
+#             st.button(st.session_state.board[i], key=f"btn_{i}", disabled=True) # !!!
+#         else:
+#             if st.button("❓", key=f"btn_{i}"):
+#                 st.session_state.revealed[i] = True # !!!
+#                 st.session_state.selected.append(i)
+# ==========================================================
 cols = st.columns(BOARD_SIZE)
 for i in range(TOTAL_CARDS):
     col = cols[i % BOARD_SIZE]
     with col:
-        if st.session_state.revealed[i] or st.session_state.matched[i]:
-            st.button(st.session_state.board[i], key=f"btn_{i}", disabled=True) # !!!
+        if st.session_state.matched[i]:
+            st.button(st.session_state.board[i], key=f"btn_{i}", disabled=True)
+        elif st.session_state.revealed[i] or i in st.session_state.selected:
+            st.button(st.session_state.board[i], key=f"btn_{i}", disabled=True)
         else:
             if st.button("❓", key=f"btn_{i}"):
-                st.session_state.revealed[i] = True # !!!
+                # Revelar la carta inmediatamente
                 st.session_state.selected.append(i)
+                st.session_state.revealed[i] = True
+                st.rerun()  # Forzar la actualización inmediata
 
 # Lógica del juego
 if len(st.session_state.selected) == 2:
@@ -123,11 +139,12 @@ if len(st.session_state.selected) == 2:
         st.session_state.matched[i1] = True
         st.session_state.matched[i2] = True
     else:
-        time.sleep(1)  # breve pausa visual
+        time.sleep(3)  # breve pausa visual
         st.session_state.revealed[i1] = False
         st.session_state.revealed[i2] = False
     st.session_state.attempts += 1
     st.session_state.selected = []
+    st.rerun()  # Forzar la actualización después de procesar el par
 
 # Mensaje de victoria
 if all(st.session_state.matched):
