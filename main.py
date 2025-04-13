@@ -11,20 +11,17 @@
 #=================================================================================
 
 # Importar las librerías necesarias
-
 import streamlit as st
 import random
 import time
 
 # Configuración del juego
-BOARD_SIZE = 4
+BOARD_SIZE = 2
 TOTAL_CARDS = BOARD_SIZE * BOARD_SIZE
 PAIRS = TOTAL_CARDS // 2
 
 # Lista de emojis 
-
 EMOJIS = ['🐶', '🐱', '🐸', '🐙', '🐥', '🦄', '🐢', '🐬']  
-
 
 #Estilo de Página#
 st.markdown(
@@ -79,12 +76,12 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.title(" Memory Game" )
-st.subheader("¡Encuentra las parejas!")
-st.subheader("🐶 🐱 🐸 🐙 🐥 🦄 🐢 🐬")
+# Título y subtítulos con markdown
+st.markdown("<h1 style='text-align: center; color: #FFFFFF;'>Memory Game</h1>", unsafe_allow_html=True)
+st.markdown("<h2 style='text-align: center; color: #F1C40F;'>¡Encuentra las parejas!</h2>", unsafe_allow_html=True)
+st.markdown("<h3 style='text-align: center; color: #FFFFFF; font-size: 40px; margin-bottom: 40px;'>🐶 🐱 🐸 🐙 🐥 🦄 🐢 🐬</h3>", unsafe_allow_html=True)
 
 # Inicializa el estado del juego
-
 if "board" not in st.session_state:
     chosen_emojis = random.sample(EMOJIS, PAIRS)
     emoji_pairs = chosen_emojis * 2
@@ -98,25 +95,12 @@ if "board" not in st.session_state:
 
 if st.session_state.game_over:
     st.warning("El juego ha terminado. ¡Reinicia para jugar de nuevo!")
-
 else:   
-    st.write(f"Intentos: {st.session_state.attempts}")
-    st.write("Selecciona dos cartas para ver si son un par.")
+    st.markdown(f"<p class='attempts-counter'>Intentos: {st.session_state.attempts}</p>", unsafe_allow_html=True)
+    st.markdown("<p class='instructions'>Selecciona dos cartas para ver si son un par.</p>", unsafe_allow_html=True)
 
 
 # Mostrar tablero
-# ==========================================================
-# cols = st.columns(BOARD_SIZE)
-# for i in range(TOTAL_CARDS):
-#     col = cols[i % BOARD_SIZE]
-#     with col:
-#         if st.session_state.revealed[i] or st.session_state.matched[i]:
-#             st.button(st.session_state.board[i], key=f"btn_{i}", disabled=True) # !!!
-#         else:
-#             if st.button("❓", key=f"btn_{i}"):
-#                 st.session_state.revealed[i] = True # !!!
-#                 st.session_state.selected.append(i)
-# ==========================================================
 cols = st.columns(BOARD_SIZE)
 for i in range(TOTAL_CARDS):
     col = cols[i % BOARD_SIZE]
@@ -139,7 +123,7 @@ if len(st.session_state.selected) == 2:
         st.session_state.matched[i1] = True
         st.session_state.matched[i2] = True
     else:
-        time.sleep(3)  # breve pausa visual
+        time.sleep(1)  # breve pausa visual
         st.session_state.revealed[i1] = False
         st.session_state.revealed[i2] = False
     st.session_state.attempts += 1
@@ -150,6 +134,7 @@ if len(st.session_state.selected) == 2:
 if all(st.session_state.matched):
     st.session_state.game_over = True
     st.success(f"🎉 ¡Ganaste en {st.session_state.attempts} intentos!")
+    st.balloons()
 
 # Botón para reiniciar
 if st.button("🔄 Reiniciar juego"):
@@ -166,6 +151,4 @@ if st.button("🔄 Reiniciar juego"):
     st.session_state.selected = []
     st.session_state.attempts = 0
     st.session_state.game_over = False
-    
-
-
+    st.rerun()
