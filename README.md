@@ -2,7 +2,7 @@
 
 Proyecto para el bloque 2 del bootcamp de Data Analysis & IA: Memory
 
-#- Descripción: Juego de memoria donde el objetivo es encontrar pares de cartas
+- Descripción: Juego de memoria donde el objetivo es encontrar pares de cartas
 idénticas.
 - Tablero: Mostrar un tablero con cartas ocultas que el jugador debe descubrir de dos en
 dos.
