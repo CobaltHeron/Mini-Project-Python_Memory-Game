@@ -12,12 +12,3 @@ dos.
 - Pares: Si las cartas coinciden, se quedan reveladas; si no, se ocultan nuevamente.
 - Puntuación: Añadir un contador de intentos y mostrar el puntaje al final.
 
-### Memory_Advanced:
-- Diferentes tamaños de tablero según la dificultad (fácil, medio, difícil).
-- Análisis de Partidas: Recopilar datos para un ranking y coronar al "Master" del juego
-(guardar en txt, Excel, MySQL, etc.).
-
-### Memory_Pro_Challenge:
-- Interfaz Mejorada: Interfaz gráfica atractiva.
-- Temas Personalizados: Diferentes temas para las cartas (animales, objetos,
-personajes).
