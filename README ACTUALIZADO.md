@@ -1,6 +1,6 @@
 # Mini-Project-Python_Memory-Game
 
-🎮 Nombre del Juego | Memory Game (alaz-memory-game.streamlit.app)
+🎮 Nombre del Juego | Memory Game 
 
 ![pantallazo juego de memoria](https://github.com/user-attachments/assets/196d8ec3-c619-4bfe-9287-d193d34bf578)
 
@@ -13,10 +13,10 @@
 - **Lenguaje**: Python
 - **Librerías**:
   ```bash
-  - `Streamlit` (para la interfaz web)
-  - `random'
-  - `os'
-  - `Time` (control de tiempos)
+  - 'Streamlit' 
+  - 'random'
+  - 'Time' 
+  - 'os'
    ```
 - **Despliegue**: GitHub Pages / Streamlit Cloud / etc.
 
@@ -36,6 +36,8 @@ Sigue estos pasos para ejecutar el proyecto localmente:
    ```bash
    streamlit run app.py
    ```
+
+Pica en el siguiente enlace para jugar on line:https://alaz-memory-game.streamlit.app/
 
 ## 🎯 Características Principales
 - ✅ Tabla de puntuaciones en tiempo real.
