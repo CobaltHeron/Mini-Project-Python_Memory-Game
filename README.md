@@ -61,7 +61,4 @@ Pica en el siguiente enlace para jugar on line: https://alaz-memory-game.streaml
 5. Abre un **Pull Request**.
 
 
----
-
 ✨ Creado por [Alberto Domínguez](https://github.com/CobaltHeron) y [Azahara García](https://github.com/Azaharag1984).
-```
