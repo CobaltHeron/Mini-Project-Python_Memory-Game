@@ -115,7 +115,7 @@ st.markdown(
 st.markdown("<h1 style='text-align: center; color: #FFFFFF;'>Memory Game</h1>", unsafe_allow_html=True)
 st.markdown("<h2 style='text-align: center; color: #ea641d ;'>¡Encuentra las parejas!</h2>", unsafe_allow_html=True)
 st.markdown("<h3 style='text-align: center; color: #FFFFFF; font-size: 38px; margin-bottom: 40px;'>🐶 🐱 🐸 🐙 🐥 🦄 🐢 🐬</h3>", unsafe_allow_html=True)
-
+       
 # Función para guardar los resultados (añade esto después de las importaciones)
 def save_game_result(player_name, score, attempts, game_time):
     # Crear el archivo si no existe
@@ -141,7 +141,7 @@ def show_ranking():
                     border-collapse: collapse;
                 }
                 .ranking-table th {
-                   /* background-color: #2C3E50; */
+                    background-color: #FC8245;
                     color: white;
                     padding: 10px;
                     text-align: center;
@@ -163,19 +163,24 @@ def show_ranking():
                 
                 # Mostrar top 10
                 lines.sort(key=lambda x: -int(x.split("|")[2]))  # Ordenar por puntuación
-                st.markdown("<table class='ranking-table'><tr><th>Posición</th><th>Nombre</th><th>Puntos</th><th>Intentos</th><th>Tiempo</th><th>Fecha</th></tr>", unsafe_allow_html=True)
+                # st.markdown("<table class='ranking-table'><tr><th>Nº</th><th>Nombre</th><th>Puntos</th><th>Intentos</th><th>Tiempo</th><th>Fecha</th></tr>", unsafe_allow_html=True)
+                st.markdown("<table class='ranking-table'><tr><th>Nº</th><th>Nombre</th><th>Puntos</th><th>Intentos</th><th>Tiempo</th><th>Fecha</th></tr>", unsafe_allow_html=True)
                 
+
+
                 for i, line in enumerate(lines[:10], 1):
                     parts = line.strip().split("|")
                     st.markdown(f"""
-                    <tr>
-                        <td>{i}</td>
-                        <td>{parts[1]}</td>
-                        <td>{parts[2]}</td>
-                        <td>{parts[3]}</td>
-                        <td>{parts[4]}s</td>
-                        <td>{parts[0]}</td>
-                    </tr>
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <tr>
+                            <td style="width: 10%; text-align: center;">{i}</td>
+                            <td style="width: 20%; text-align: center;">{parts[1]}</td>
+                            <td style="width: 20%; text-align: center;">{parts[2]}</td>
+                            <td style="width: 20%; text-align: center;">{parts[3]}</td>
+                            <td style="width: 15%; text-align: center;">{parts[4]}s</td>
+                            <td style="width: 15%; text-align: center;">{parts[0]}</td>
+                        </tr>
+                    </table>
                     """, unsafe_allow_html=True)
                 
                 st.markdown("</table>", unsafe_allow_html=True)
@@ -265,6 +270,7 @@ if all(st.session_state.matched):
     st.session_state.game_over = True
     
     with st.form("game_results"):
+        st.balloons()
         st.markdown(f"""
         <div class='victory-message'>
             🎉 ¡Ganaste en {st.session_state.attempts} intentos!<br>
@@ -274,13 +280,12 @@ if all(st.session_state.matched):
         </div>
         """, unsafe_allow_html=True)
         
-        player_name = st.text_input("Ingresa tu nombre para el ranking:", max_chars=20)
+        player_name = st.text_input("Ingresa tu nombre para el ranking:", max_chars=10)
         
         if st.form_submit_button("Guardar mi resultado"):
             if player_name.strip():
                 save_game_result(player_name, st.session_state.score, st.session_state.attempts, total_time)
                 st.success("¡Resultado guardado en el ranking!")
-                st.balloons()
                 time.sleep(2)
                 st.rerun()
             else:
