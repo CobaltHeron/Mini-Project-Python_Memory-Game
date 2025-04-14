@@ -42,7 +42,6 @@ Pica en el siguiente enlace para jugar on line: https://alaz-memory-game.streaml
 ## 🎯 Características Principales
 - ✅ Tabla de puntuaciones en tiempo real.
 - ✅ Temporizador integrado.
-- ✅ Diseño responsive (adaptable a móviles y desktop).
 
 ## 📊 Estructura del Proyecto
 ```
